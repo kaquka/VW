@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Facturación</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pagination-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pagination-bar .page-buttons button {
+            margin: 0 2px;
+        }
+        .table-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Portal de Facturación</h1>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'facturas')">Facturas / Estados de Cuenta</button>
+            <button class="tab-button" onclick="openTab(event, 'complementos')">Complementos de Pago</button>
+        </div>
+
+        <div id="facturas" class="tab-content active">
+            <div class="search-section">
+                <div class="form-group">
+                    <label for="fecha-inicial">Fecha Inicial</label>
+                    <input type="date" id="fecha-inicial" name="fecha-inicial" value="2024-04-22">
+                </div>
+                <div class="form-group">
+                    <label for="fecha-final">Fecha Final</label>
+                    <input type="date" id="fecha-final" name="fecha-final" value="2024-04-22">
+                </div>
+                <div class="form-group">
+                    <label for="rfc-cliente">RFC Cliente</label>
+                    <input type="text" id="rfc-cliente" name="rfc-cliente">
+                </div>
+                <button>Buscar</button>
+            </div>
+
+            <div class="table-section">
+                <!-- Barra de paginación arriba -->
+                <div class="pagination-bar">
+                    <div class="page-buttons">
+                        <button id="first-page-facturas">&laquo; Primero</button>
+                        <button id="prev-page-facturas">&lsaquo; Anterior</button>
+                        <button id="next-page-facturas">Siguiente &rsaquo;</button>
+                        <button id="last-page-facturas">Último &raquo;</button>
+                    </div>
+                    <div class="page-info">
+                        <span>Mostrar </span>
+                        <select id="page-size-top">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <span> por página</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No Documento</th>
+                                <th>Serie</th>
+                                <th>Folio</th>
+                                <th>Fecha</th>
+                                <th>RFC Cliente</th>
+                                <th>Razón Social</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Moneda</th>
+                                <th>Referencia</th>
+                                <th>Estatus</th>
+                                <th>Descarga Archivos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="facturas-body">
+                            <!-- Los datos serán cargados dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Barra de paginación abajo -->
+                <div class="pagination-bar">
+                    <div class="page-buttons">
+                        <button id="first-page-facturas-bottom">&laquo; Primero</button>
+                        <button id="prev-page-facturas-bottom">&lsaquo; Anterior</button>
+                        <button id="next-page-facturas-bottom">Siguiente &rsaquo;</button>
+                        <button id="last-page-facturas-bottom">Último &raquo;</button>
+                    </div>
+                    <div class="page-info">
+                        <span>Mostrar </span>
+                        <select id="page-size-bottom">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <span> por página</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="complementos" class="tab-content">
+            <div class="search-section">
+                <div class="form-group">
+                    <label for="fecha-inicial-complemento">Fecha Inicial</label>
+                    <input type="date" id="fecha-inicial-complemento" name="fecha-inicial-complemento">
+                </div>
+                <div class="form-group">
+                    <label for="fecha-final-complemento">Fecha Final</label>
+                    <input type="date" id="fecha-final-complemento" name="fecha-final-complemento">
+                </div>
+                <div class="form-group">
+                    <label for="rfc-cliente-complemento">RFC Cliente</label>
+                    <input type="text" id="rfc-cliente-complemento" name="rfc-cliente-complemento">
+                </div>
+                <button>Buscar</button>
+            </div>
+
+            <div class="table-section">
+                <!-- Barra de paginación arriba -->
+                <div class="pagination-bar">
+                    <div class="page-buttons">
+                        <button id="first-page-complementos">&laquo; Primero</button>
+                        <button id="prev-page-complementos">&lsaquo; Anterior</button>
+                        <button id="next-page-complementos">Siguiente &rsaquo;</button>
+                        <button id="last-page-complementos">Último &raquo;</button>
+                    </div>
+                    <div class="page-info">
+                        <span>Mostrar </span>
+                        <select id="page-size-top-complementos">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <span> por página</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>UUID</th>
+                                <th>Fecha</th>
+                                <th>RFC</th>
+                                <th>Nombre</th>
+                                <th>Moneda</th>
+                                <th>Importe</th>
+                                <th>CFDI Relacionado</th>
+                                <th>Opciones</th>
+                                <th>CURP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complementos-body">
+                            <!-- Los datos serán cargados dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Barra de paginación abajo -->
+                <div class="pagination-bar">
+                    <div class="page-buttons">
+                        <button id="first-page-complementos-bottom">&laquo; Primero</button>
+                        <button id="prev-page-complementos-bottom">&lsaquo; Anterior</button>
+                        <button id="next-page-complementos-bottom">Siguiente &rsaquo;</button>
+                        <button id="last-page-complementos-bottom">Último &raquo;</button>
+                    </div>
+                    <div class="page-info">
+                        <span>Mostrar </span>
+                        <select id="page-size-bottom-complementos">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <span> por página</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Todos los derechos reservados. <a href="#">Política de Privacidad</a></p>
+        </footer>
+    </div>
+
+    <!-- Barra de descarga -->
+    <div class="download-bar">
+        <a href="#" class="download-button">Descargar PDF</a>
+        <a href="#" class="download-button">Descargar Excel</a>
+        <a href="#" class="download-button">Descargar CSV</a>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Función para manejar la paginación
+        function paginate(tableId, data, pageSize, currentPage) {
+            const tableBody = document.getElementById(tableId);
+            tableBody.innerHTML = '';
+
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageData = data.slice(start, end);
+
+            pageData.forEach(row => {
+                const tr = document.createElement('tr');
+                Object.values(row).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    tr.appendChild(td);
+                });
+                tableBody.appendChild(tr);
+            });
+        }
+
+        const facturasData = [
+    {
+        noDocumento: '001',
+        serie: 'A',
+        folio: '12345',
+        fecha: '22/04/2024',
+        rfcCliente: 'ABC123456789',
+        razonSocial: 'Empresa XYZ',
+        cliente: 'Juan Pérez',
+        total: '$1000.00',
+        moneda: 'MXN',
+        referencia: 'Ref001',
+        estatus: 'Pendiente',
+        archivo: '#'
+    },
+    {
+        noDocumento: '002',
+        serie: 'B',
+        folio: '12346',
+        fecha: '22/04/2024',
+        rfcCliente: 'DEF987654321',
+        razonSocial: 'Empresa ABC',
+        cliente: 'María García',
+        total: '$2000.00',
+        moneda: 'USD',
+        referencia: 'Ref002',
+        estatus: 'Pagado',
+        archivo: '#'
+    }
+];
+
+const complementosData = [
+    {
+        noDocumento: '003',
+        serie: 'C',
+        folio: '12347',
+        fecha: '22/04/2024',
+        rfcCliente: 'GHI456123789',
+        razonSocial: 'Empresa DEF',
+        cliente: 'Carlos López',
+        total: '$1500.00',
+        moneda: 'MXN',
+        referencia: 'Ref003',
+        curp: 'LOPC850715HDFRZS07',
+        estatus: 'Pendiente',
+        archivo: '#'
+    },
+    {
+        noDocumento: '004',
+        serie: 'D',
+        folio: '12348',
+        fecha: '22/04/2024',
+        rfcCliente: 'JKL123789456',
+        razonSocial: 'Empresa GHI',
+        cliente: 'Ana Martínez',
+        total: '$2500.00',
+        moneda: 'USD',
+        referencia: 'Ref004',
+        curp: 'MART930125MMCRRR04',
+        estatus: 'Pagado',
+        archivo: '#'
+    }
+];
+
+        const pageSizeSelectorFacturas = document.getElementById('page-size-top');
+        const pageSizeSelectorComplementos = document.getElementById('page-size-top-complementos');
+
+        let currentPageFacturas = 1;
+        let currentPageComplementos = 1;
+
+        function updatePagination() {
+            const pageSizeFacturas = parseInt(pageSizeSelectorFacturas.value);
+            const pageSizeComplementos = parseInt(pageSizeSelectorComplementos.value);
+
+            paginate('facturas-body', facturasData, pageSizeFacturas, currentPageFacturas);
+            paginate('complementos-body', complementosData, pageSizeComplementos, currentPageComplementos);
+        }
+
+        pageSizeSelectorFacturas.addEventListener('change', () => {
+            currentPageFacturas = 1;
+            updatePagination();
+        });
+
+        pageSizeSelectorComplementos.addEventListener('change', () => {
+            currentPageComplementos = 1;
+            updatePagination();
+        });
+
+        document.getElementById('first-page-facturas').addEventListener('click', () => {
+            currentPageFacturas = 1;
+            updatePagination();
+        });
+        document.getElementById('prev-page-facturas').addEventListener('click', () => {
+            if (currentPageFacturas > 1) {
+                currentPageFacturas--;
+                updatePagination();
+            }
+        });
+        document.getElementById('next-page-facturas').addEventListener('click', () => {
+            if (currentPageFacturas * parseInt(pageSizeSelectorFacturas.value) < facturasData.length) {
+                currentPageFacturas++;
+                updatePagination();
+            }
+        });
+        document.getElementById('last-page-facturas').addEventListener('click', () => {
+            currentPageFacturas = Math.ceil(facturasData.length / parseInt(pageSizeSelectorFacturas.value));
+            updatePagination();
+        });
+
+        document.getElementById('first-page-complementos').addEventListener('click', () => {
+            currentPageComplementos = 1;
+            updatePagination();
+        });
+        document.getElementById('prev-page-complementos').addEventListener('click', () => {
+            if (currentPageComplementos > 1) {
+                currentPageComplementos--;
+                updatePagination();
+            }
+        });
+        document.getElementById('next-page-complementos').addEventListener('click', () => {
+            if (currentPageComplementos * parseInt(pageSizeSelectorComplementos.value) < complementosData.length) {
+                currentPageComplementos++;
+                updatePagination();
+            }
+        });
+        document.getElementById('last-page-complementos').addEventListener('click', () => {
+            currentPageComplementos = Math.ceil(complementosData.length / parseInt(pageSizeSelectorComplementos.value));
+            updatePagination();
+        });
+
+        // Inicializar la tabla con la primera página de datos
+        updatePagination();
+    </script>
+</body>
+</html>
