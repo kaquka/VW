@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdn.bronson.vwfs.tools/bluelabel/v/15.7.1/css/style.min.css">
+    <link rel="stylesheet" href="https://cdn.bronson.vwfs.tools/bluelabel/v/15.7.1/css/debug.css">
+    <script src="https://cdn.bronson.vwfs.io/bluelabel/v/15.7.1/js/bronson.essentials.min.js" defer></script>
+    <title>Portal de Facturación</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+        .captcha {
+            width: 60%;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header class="c-header__wrapper">
+        <div class="c-header">
+            <div class="c-header__content-wrapper">
+                <div class="c-header__logo">
+                    <a class="c-logo" href="#0" title="INSERT YOUR OWN TEXT THAT DESCRIBES THE LINK"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="c-hero-teaser c-hero-teaser--auto">
+            <img class="c-hero-teaser__image" sizes="100vw" alt="alternative text" src="banner.jpg">
+            <div class="c-hero-teaser__content">
+                <div class="c-hero-teaser__content-inner">
+                    <header class="c-hero-teaser__heading"></header>
+                </div>
+            </div>
+            <div class="c-hero-teaser__content u-pt-none">
+                <div class="c-hero-teaser__content-inner">
+                    <div class="c-hero-teaser__box c-card u-p-small u-bg-white c-hero-teaser__box--responsive">
+                        <div class="u-text-left u-p-none">
+                            <header class="c-card__header u-p-none">
+                                <div class="o-inline-group o-inline-group--small">
+                                    <i class="c-item-teaser__icon c-icon c-icon--[semantic-user] o-inline-group__item" role="img"></i>
+                                    <div class="o-inline-group__item">
+                                        <h4 class="c-card__title u-font-size-fs2">
+                                            Portal de Facturación
+                                        </h4>
+                                        <p class="c-card__subtitle u-font-size-fs-5 u-text-muted">
+                                            (Facturas / Estados de cuenta)
+                                        </p>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="c-card__body">
+                                <div>
+                                    <h6 class="c-card__subtitle u-font-size-fs-2 u-text-base o-inline-group__item u-mb-small">Ingresa los siguientes datos para recuperar tu contraseña:</h6>
+                                    <div class="u-mv-xsmall">
+                                        <h6 class="c-card__subtitle u-font-size-fs-2 u-text-base o-inline-group__item">Número de cliente</h6>
+                                        <div class="c-input">
+                                            <input class="c-input__input" id="num_client" type="text" placeholder="Número de cliente" data-tr-component="Input Field" data-tr-function="Text Input">
+                                        </div>
+                                    </div>
+                                    <h6 class="c-card__subtitle u-font-size-fs-2 u-mb-xsmall u-text-base o-inline-group__item">Generar nuevo captcha</h6>
+                                    <div class="u-border captcha u-mb-xsmall">
+                                        <img class="u-object-fit-cover" src="assets/captcha.png" alt="alternative text">
+                                    </div>
+                                    <div class="c-input captcha">
+                                        <input class="c-input__input" id="captcha-input" type="text" placeholder="Captcha" data-tr-component="Input Field" data-tr-function="Text Input">
+                                    </div>
+                                </div>
+								
+								<div class=" u-float-right u-text-right">
+									<div class="c-status-message c-status-message--error">
+										No se encuentra este número de cliente
+									</div>
+									<div class="o-button-container o-button-container--nav">
+										<button id='cancel' class="c-btn c-btn--secondary o-button-container__button">
+											<span class="c-btn__text">Cancelar</span>
+										</button>
+
+										<button id='continue' class="c-btn o-button-container__button">
+											<span class="c-btn__text">Continuar</span>
+										</button>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="c-footer c-footer--responsive">
+        <div class="c-footer__module c-footer__module--meta-nav">
+            <div class="o-page-wrap">
+                <nav class="c-footer-meta-bar u-pt u-pb">
+                    <ul class="c-footer-meta-nav" id="footer-list">
+                        <li class="c-footer-meta-nav__item"><a class="c-footer-meta-nav__link" href="https://www.vwfs.mx/vwb/aviso-de-privacidad.html" target="_blank">Aviso de privacidad de VOLKSWAGEN BANK S.A. INSTITUCIÓN DE BANCA MÚLTIPLE</a></li>
+                        <li class="c-footer-meta-nav__item"><a class="c-footer-meta-nav__link" href="https://www.vwfs.mx/vwl/aviso-de-privacidad.html" target="_blank">Aviso de privacidad de VOLKSWAGEN LEASING, S.A. DE C.V.</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Selecciona los botones y los campos de entrada
+            var cancelButton = document.querySelector("#cancel");
+            var continueButton = document.querySelector("#continue");
+            var numClientInput = document.querySelector("#num_client");
+            var captchaInput = document.querySelector("#captcha-input");
+            
+            // Define las cadenas de comparación
+            var validNumClient = "12345"; // La cadena que esperas para el número de cliente
+            var validCaptcha = "smwm"; // La cadena que esperas para el captcha
+
+            // Función para mostrar error
+            function showError(message) {
+                alert(message); // Para fines demostrativos
+            }
+
+            // Añadir eventos de clic a los botones
+            if (cancelButton) {
+                cancelButton.addEventListener("click", function() {
+                    window.location.href = "log-in.html";
+                });
+            }
+
+            if (continueButton) {
+                continueButton.addEventListener("click", function() {
+                    // Recupera los valores de los inputs
+                    var numClientValue = numClientInput.value;
+                    var captchaValue = captchaInput.value;
+
+                    // Valida los valores
+                    if (numClientValue === validNumClient && captchaValue === validCaptcha) {
+                        // Redirige si los valores son válidos
+                        window.location.href = "recover-mail.html";
+                    } else {
+                        // Muestra un mensaje de error si los valores no son válidos
+                        showError("Número de cliente o captcha incorrectos. Por favor, inténtelo de nuevo.");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

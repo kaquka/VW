@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://cdn.bronson.vwfs.tools/bluelabel/v/15.7.1/css/style.min.css">
+		<link rel="stylesheet" href="https://cdn.bronson.vwfs.tools/bluelabel/v/15.7.1/css/debug.css">
+		<link rel="stylesheet" href="styles.css">
+		
+		<script src="https://cdn.bronson.vwfs.io/bluelabel/v/15.7.1/js/bronson.essentials.min.js" defer></script>
+		<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+		<!-- Incluye el archivo de localización para español -->
+		<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+		
+		
+		<title>Portal de Facturación</title>
+		
+		<script>
+			flatpickr("#datepicker", {
+				locale: "es",  // Configura el idioma a español
+				firstDayOfWeek: 1 // Configura el primer día de la semana (lunes)
+			});
+
+			// Configuración global para todos los selectores de flatpickr
+			flatpickr.localize(flatpickr.l10ns.es);
+		</script>
+
+	</head>
+	
+	<body>
+	
+		<div class="c-section-nav js-section-nav">
+		
+			<div class="c-section-nav__header c-section-nav__header--align ">
+				<h4 class="u-h4 u-font-size-fs2 o-inline-group__item">
+					Portal de Facturación
+				</h4>
+				<button class="c-section-nav__section-label  js-section-nav__section-label o-inline-group__item" type="button" aria-expanded="false" aria-controls="section-nav-container">
+					<span class="c-section-nav__section-label__text ">
+						Menú
+					</span>
+				</button>
+			</div>
+			
+			<nav class="c-section-nav__container  js-section-nav__container o-line-group o-inline-group--stretch" id="section-nav-container" aria-label="Table of contents">
+				<h3 class="c-section-nav__container u-h3 u-font-size-fs2 o-line-group_item">
+					Portal de Facturación
+				</h3>
+				<div class="c-section-nav__scroll  js-section-nav__scroll o-line-group_item">
+					<button class="c-section-nav__scroll-button  c-section-nav__scroll-button--prev  js-section-nav__scroll-button--prev" type="button" tabindex="-1" aria-label="Scroll to the left"></button>
+					<ul class="c-section-nav__list  js-section-nav__list">
+						<li class="c-section-nav__item ">
+							<a class="c-section-nav__link  js-section-nav__link u-text-center u-pv-xsmall" href="#my-section-a" >
+								<span style="display:in-block;">
+									<i class="c-icon  c-icon--[faq] u-mr-small" style="vertical-align:middle;" aria-hidden="true" role="img"></i>
+									<span style="vertical-align:middle;">Preguntas frecuentes</span>
+								</span>
+							</a>
+						</li>
+						<li class="c-section-nav__item">
+							<a class="c-section-nav__link  js-section-nav__link u-text-center u-pv-xsmall" href="#my-section-a" >
+								<span style="display:in-block;">
+									<i class="c-icon  c-icon--[semantic-user]" style="vertical-align:middle;" aria-hidden="true" role="img"></i>
+									<span style="vertical-align:middle;">Usuario</span>
+								</span>
+							</a>
+						</li>
+						<li class="c-section-nav__item">
+							<a class="c-section-nav__link  js-section-nav__link u-text-center u-pv-xsmall" href="#my-section-a" >
+								<span style="display:in-block;">
+									<i class="c-icon  c-icon--[logout]" style="vertical-align:middle;" aria-hidden="true" role="img"></i>
+									<span style="vertical-align:middle;">Salir</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+					<button class="c-section-nav__scroll-button  c-section-nav__scroll-button--next  js-section-nav__scroll-button--next" type="button" tabindex="-1" aria-label="Scroll to the right"></button>
+				</div>
+			</nav>
+			
+		</div>
+		
+		<div class="c-tabs c-tabs--align js-tabs u-p-large">
+		
+			<div class="c-tabs__nav  js-tabs__nav" role="tablist">
+				<div role="presentation" class="c-tabs__nav-item  js-tabs__nav-item">
+					<button id="m82c21bn" role="tab" class="c-tabs__nav-link  js-tabs__nav-link  ">
+						<span class="c-tabs__text">
+							Facturas / Estados de Cuenta
+						</span>
+					</button>
+				</div>
+				<div role="presentation" class="c-tabs__nav-item  js-tabs__nav-item">
+					<button id="m82g7vn2" role="tab" class="c-tabs__nav-link  js-tabs__nav-link">
+						<span class="c-tabs__text">
+							Complementos de Pago
+						</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="c-tabs__content-wrapper">
+				<div role="tabpanel" aria-labelledby="m82c21bn" class="c-tabs__content  js-tabs__content">
+					<div class="search-section o-inline-group o-inline-group--small">
+					
+						<div class="form-group o-inline-group__item">
+							<div class="c-form-field  ">
+								<label for="c-form-field__label">
+									Fecha Inicial
+									<span class="c-form-field__notion c-form-field__notion--red">
+										*
+									</span>
+								</label>
+								<div class="c-form-field__box">
+									<div class="c-datepicker  js-datepicker" data-datepicker-month-selector-type="static" data-datepicker-date-format="d/m/Y">
+										<div class="c-input">
+											<input class="c-input__input" id="start-date" type="text" value="" data-input required="true" >
+											<button class="c-input__addon  c-input__addon--no-background" aria-label="Toggle Datepicker" type="button" tabindex="-1" data-toggle>
+												<i class="c-icon  c-icon--[semantic-calendar]" aria-hidden="true" role="img"></i>
+											</button>
+										</div>
+										
+									</div>
+								</div>
+							</div>							
+						</div>
+						
+						<div class="form-group o-inline-group__item">
+							<div class="c-form-field  ">
+								<label for="c-form-field__label">Fecha Final</label>
+								<div class="c-form-field__box">
+									<div class="c-datepicker  js-datepicker" data-datepicker-month-selector-type="static" data-datepicker-date-format="d/m/Y">
+										<div class="c-input">
+											<input class="c-input__input" id="end-date" type="text" value="" data-input disabled>
+											<button class="c-input__addon  c-input__addon--no-background" aria-label="Toggle Datepicker" type="button" tabindex="-1" data-toggle >
+												<i class="c-icon  c-icon--[semantic-calendar]" aria-hidden="true" role="img"></i>
+											</button>
+										</div>
+
+									</div>
+								</div>
+							</div>							
+						</div>
+						
+						<div class="form-group o-inline-group__item">
+							<div class="c-form-field  ">
+								<label for="c-form-field__label">
+									RFC Cliente
+								</label>
+								<div class="c-form-field__box">
+									<div class="c-input  ">
+										<input class="c-input__input  " id="rfc-cliente" name="rfc-cliente" type="text" data-tr-component="Input Field" data-tr-function="Text Input" />
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group o-inline-group__item u-border ">
+							<button class="c-btn">
+								<span class="c-btn__text">
+									Buscar
+								</span>
+							</button>
+						</div>
+
+					</div>
+					
+					<div class="table-section">
+						<div class="table-container u-border">
+						
+							<div class="pagination-bar u-border">
+								<div class="page-buttons">
+									<div class="page-info">
+										Página 1 de 10 (9 elementos)
+									</div>
+									<button id="first-page-facturas" class="pagination-btn">&laquo;</button>
+									<button id="prev-page-facturas">&lsaquo;</button>
+									<span>#</span>
+									<button id="next-page-facturas">&rsaquo;</button>
+									<button id="last-page-facturas">&raquo;</button>
+								</div>
+								<div class="page-info">
+									<span>Tamaño de página </span>
+									<select id="page-size-top">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="5">3</option>
+									</select>
+								</div>
+							</div>
+							
+							<table>
+								<thead>
+									<tr>
+										<th>No Documento</th>
+										<th>Serie</th>
+										<th>Folio</th>
+										<th>Fecha</th>
+										<th>RFC Cliente</th>
+										<th>Razón Social</th>
+										<th>Cliente</th>
+										<th>Total</th>
+										<th>Moneda</th>
+										<th>Referencia</th>
+										<th>Estatus</th>
+										<th id="download-th">Descarga Archivos</th>
+									</tr>
+								</thead>
+								<tbody id="facturas-body">
+									<!-- Los datos serán cargados dinámicamente -->
+								</tbody>
+							</table>
+							
+							<div class="pagination-bar u-border">
+								<div class="page-buttons">
+									<div class="page-info">
+										Página 1 de 10 (9 elementos)
+									</div>
+									<button id="first-page-facturas" class="pagination-btn">&laquo;</button>
+									<button id="prev-page-facturas">&lsaquo;</button>
+									<span>#</span>
+									<button id="next-page-facturas">&rsaquo;</button>
+									<button id="last-page-facturas">&raquo;</button>
+								</div>
+			
+								<div class="c-input  c-input--select">
+									<span>Tamaño de página </span>
+									<select id="page-size-top " class="c-input__input  " name="">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+				
+				<div role="tabpanel" aria-labelledby="m82g7vn2" class="c-tabs__content  js-tabs__content">
+					<div class="search-section">
+						<div class="form-group">
+							<label for="fecha-inicial-complemento">Fecha Inicial</label>
+							<input type="date" id="fecha-inicial-complemento" name="fecha-inicial-complemento">
+						</div>
+						<div class="form-group">
+							<label for="fecha-final-complemento">Fecha Final</label>
+							<input type="date" id="fecha-final-complemento" name="fecha-final-complemento">
+						</div>
+						<div class="form-group">
+							<label for="rfc-cliente-complemento">RFC Cliente</label>
+							<input type="text" id="rfc-cliente-complemento" name="rfc-cliente-complemento">
+						</div>
+						<button>Buscar</button>
+					</div>
+
+					<div class="table-section">
+						<!-- Barra de paginación arriba -->
+						<div class="pagination-bar">
+							<div class="page-buttons">
+								<button id="first-page-complementos">&laquo; Primero</button>
+								<button id="prev-page-complementos">&lsaquo; Anterior</button>
+								<button id="next-page-complementos">Siguiente &rsaquo;</button>
+								<button id="last-page-complementos">Último &raquo;</button>
+							</div>
+							<div class="page-info">
+								<span>Mostrar </span>
+								<select id="page-size-top-complementos">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+								<span> por página</span>
+							</div>
+						</div>
+
+						<div class="table-container">
+							<table>
+								<thead>
+									<tr>
+										<th>UUID</th>
+										<th>Fecha</th>
+										<th>RFC</th>
+										<th>Nombre</th>
+										<th>Moneda</th>
+										<th>Importe</th>
+										<th>CFDI Relacionado</th>
+										<th>Opciones</th>
+										<th>CURP</th>
+									</tr>
+								</thead>
+								<tbody id="complementos-body">
+									<!-- Los datos serán cargados dinámicamente -->
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Barra de paginación abajo -->
+						<div class="pagination-bar">
+							<div class="page-buttons">
+								<button id="first-page-complementos-bottom">&laquo; Primero</button>
+								<button id="prev-page-complementos-bottom">&lsaquo; Anterior</button>
+								<button id="next-page-complementos-bottom">Siguiente &rsaquo;</button>
+								<button id="last-page-complementos-bottom">Último &raquo;</button>
+							</div>
+							<div class="page-info">
+								<span>Mostrar </span>
+								<select id="page-size-bottom-complementos">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+								<span> por página</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="download-bar">
+		
+			<button class="c-btn  c-btn--secondary  c-btn--icon">
+
+				<span class="c-btn__text">
+					EXPORTAR TU LISTA DE FACTURAS A EXCEL
+				</span>
+				<i class="c-btn__icon  
+								c-icon  c-icon--[semantic-download]
+						" aria-hidden="true" role="img"></i>
+
+			</button>
+			
+			<button class="c-btn  ">
+
+				<span class="c-btn__text">
+					DESCARGAR PENDIENTES DE FACTURAS
+				</span>
+
+			</button>
+			
+			<button class="c-btn  ">
+
+				<span class="c-btn__text">
+					DESCARGAR MASIVA DE FACTURAS
+				</span>
+
+			</button>
+		</div>
+		
+	</body>
+	
+	<script src="scripty.js" defer></script>
+	
+</html>

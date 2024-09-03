@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select con Ícono Personalizado</title>
+    <style>
+       .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select {
+    appearance: none; /* Oculta el icono predeterminado */
+    -webkit-appearance: none; /* Para navegadores basados en WebKit */
+    -moz-appearance: none; /* Para Firefox */
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 200px; /* Ajusta según sea necesario */
+}
+
+.custom-select-wrapper::after {
+    content: '▼'; /* Puedes usar cualquier otro carácter o imagen como icono */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Permite hacer clic en el <select> debajo del icono */
+    font-size: 16px;
+    color: #007bff; /* Color del icono personalizado */
+}
+
+.custom-select:focus {
+    outline: none; /* Opcional: quita el contorno predeterminado del <select> al hacer clic */
+}
+
+    </style>
+</head>
+<body>
+    <div class="custom-select-wrapper">
+    <select class="custom-select">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+</div>
+
+</body>
+</html>
+
