@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+/* Estilo para el header con transparencia */
+.header {
+    position: absolute; /* Mantén el header fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Ajusta la altura según tus necesidades */
+    background: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+    color: white;
+    z-index: 10; /* Asegúrate de que el header esté por encima del hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.header .logo img {
+    height: 60px; /* Ajusta la altura del logo para que se ajuste al header */
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Ajusta la altura según tus necesidades */
+    overflow: hidden;
+}
+
+/* Contenedor del slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionar */
+}
+
+.slide-text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.slider-controls button {
+    pointer-events: all;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding: 10px;
+}
+
+.step {
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.form-section {
+    width: 58%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-section {
+    width: 38%;
+    max-height: calc(100vh - 40px); /* Ocupa casi toda la altura de la pantalla menos el margen */
+    overflow-y: auto; /* Scroll independiente */
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: sticky; /* Fija la sección al hacer scroll */
+    top: 20px; /* Mantiene un margen de 20px desde el borde superior */
+}
+
+.result-section img {
+    max-width: 100%;
+}
+
+.price {
+    color: #00448f;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.quote-summary {
+    margin-top: 20px;
+}
+
+.quote-summary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quote-summary ul li {
+    margin-bottom: 10px;
+}
+
+.quote-summary p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Estilos para Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px; /* Ajusta el ancho del scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de la pista del scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color del pulgar del scrollbar */
+    border-radius: 10px; /* Radio de borde del pulgar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del pulgar al pasar el ratón */
+}
+
+/* Estilos para Firefox */
+* {
+    scrollbar-width: thin; /* Hace que el scrollbar sea delgado */
+    scrollbar-color: #888 #f1f1f1; /* Color del pulgar y de la pista */
+}
+
+/* Estilos para Edge y otros navegadores que usan el estándar de scrollbar de CSS */
+.scroll-container {
+    scrollbar-width: thin; /* Hace que el scrollbar sea delgado */
+    scrollbar-color: #888 #f1f1f1; /* Color del pulgar y de la pista */
+}
