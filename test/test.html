@@ -5,50 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Más información</title>
   <style>
-    .info-component {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      text-decoration: none; /* Remove underline */
+    :root {
+      --icon-size: 20px;  /* Variable para el tamaño del ícono */
+      --plus-thickness: 2px;  /* Variable para el grosor del signo de más */
     }
 
-    /* Reset inherited styles */
     .info-component {
-      all: unset;
       display: flex;
       align-items: center;
       cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+      max-width: 100%; /* Adapt to container width */
     }
 
     .icon-circle {
-      width: 40px;
-      height: 40px;
+      width: var(--icon-size);
+      height: var(--icon-size);
       border-radius: 50%;
       background-color: #4caf50;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-right: 10px;
+      flex-shrink: 0; /* Prevent shrinking of the circle */
     }
 
     .plus-icon {
-      font-size: 24px;
-      color: white;
+      position: relative;
+      width: 50%; /* Size relative to the circle */
+      height: 50%; /* Size relative to the circle */
+    }
+
+    .plus-icon::before,
+    .plus-icon::after {
+      content: '';
+      position: absolute;
+      background-color: white;
+    }
+
+    /* Horizontal bar of the plus sign */
+    .plus-icon::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: var(--plus-thickness);
+      transform: translateY(-50%);
+    }
+
+    /* Vertical bar of the plus sign */
+    .plus-icon::after {
+      top: 0;
+      left: 50%;
+      width: var(--plus-thickness);
+      height: 100%;
+      transform: translateX(-50%);
     }
 
     .info-text {
-      font-size: 16px;
+      font-size: 1em;
       position: relative;
       color: black;
+      white-space: nowrap; /* Prevent text wrapping */
     }
 
     .info-text::after {
       content: '';
       position: absolute;
       width: 0;
-      height: 2px;
+      height: 0.1em;
       background-color: #4caf50;
-      bottom: -3px;
+      bottom: -0.2em;
       left: 50%;
       transform: translateX(-50%);
       transition: width 0.3s ease;
@@ -57,14 +84,24 @@
     .info-component:hover .info-text::after {
       width: 100%;
     }
+
+    /* Optional container for testing */
+    .info-component-container {
+      padding: 10px;
+      max-width: 100%; /* Adapt the container width */
+      border: 1px solid #ccc;
+    }
+
   </style>
 </head>
 <body>
-  <a href="" class="info-component">
-    <div class="icon-circle">
-      <span class="plus-icon">+</span>
-    </div>
-    <span class="info-text">Más información</span>
-  </a>
+  <div class="info-component-container">
+    <a href="" class="info-component">
+      <div class="icon-circle">
+        <div class="plus-icon"></div>
+      </div>
+      <span class="info-text">Más información</span>
+    </a>
+  </div>
 </body>
 </html>
