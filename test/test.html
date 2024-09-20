@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Más información</title>
+  <style>
+    .info-component {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none; /* Remove underline */
+    }
+
+    /* Reset inherited styles */
+    .info-component {
+      all: unset;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #4caf50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .plus-icon {
+      font-size: 24px;
+      color: white;
+    }
+
+    .info-text {
+      font-size: 16px;
+      position: relative;
+      color: black;
+    }
+
+    .info-text::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .info-component:hover .info-text::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <a href="" class="info-component">
+    <div class="icon-circle">
+      <span class="plus-icon">+</span>
+    </div>
+    <span class="info-text">Más información</span>
+  </a>
+</body>
+</html>

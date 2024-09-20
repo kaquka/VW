@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos Programados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .payment-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-input input {
+            margin-right: 10px;
+            padding: 5px;
+            flex: 1;
+        }
+
+        .payment-input label {
+            flex: 0.5;
+            margin-right: 10px;
+        }
+
+        .add-payment-btn, .save-btn {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .save-btn {
+            background-color: #007bff;
+        }
+
+        .add-payment-btn:hover, .save-btn:hover {
+            background-color: #218838;
+        }
+
+        .save-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        .summary-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-list li span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pagos Programados</h2>
+    <div id="form-section" class="form-section">
+        <!-- Dynamic payment inputs will be added here -->
+    </div>
+    <button id="add-payment-btn" class="add-payment-btn">Agregar Pago</button>
+    <button id="save-btn" class="save-btn">Guardar Pagos</button>
+
+    <div id="summary-section" class="summary-section">
+        <h3>Resumen de Pagos</h3>
+        <ul id="summary-list" class="summary-list">
+            <!-- Payment summaries will be displayed here -->
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Counter for payments
+    let paymentCount = 0;
+
+    // Function to add a new payment input
+    function addPaymentInput() {
+        paymentCount++;
+
+        // Create a container for the new payment input
+        const paymentDiv = document.createElement('div');
+        paymentDiv.classList.add('payment-input');
+        paymentDiv.id = `payment-${paymentCount}`;
+
+        // Create date input
+        const dateLabel = document.createElement('label');
+        dateLabel.innerText = `Fecha ${paymentCount}`;
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.id = `date-${paymentCount}`;
+
+        // Create amount input
+        const amountLabel = document.createElement('label');
+        amountLabel.innerText = `Cantidad ${paymentCount}`;
+        const amountInput = document.createElement('input');
+        amountInput.type = 'number';
+        amountInput.id = `amount-${paymentCount}`;
+        amountInput.placeholder = 'Cantidad en $';
+
+        // Append inputs to the payment div
+        paymentDiv.appendChild(dateLabel);
+        paymentDiv.appendChild(dateInput);
+        paymentDiv.appendChild(amountLabel);
+        paymentDiv.appendChild(amountInput);
+
+        // Append payment div to form section
+        document.getElementById('form-section').appendChild(paymentDiv);
+    }
+
+    // Function to save payments and display summary
+    function savePayments() {
+        const summaryList = document.getElementById('summary-list');
+        summaryList.innerHTML = ''; // Clear current summary
+
+        for (let i = 1; i <= paymentCount; i++) {
+            const dateValue = document.getElementById(`date-${i}`).value;
+            const amountValue = document.getElementById(`amount-${i}`).value;
+
+            if (dateValue && amountValue) {
+                // Create list item for each payment
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span>Fecha:</span> ${dateValue}, <span>Cantidad:</span> $${amountValue}`;
+                summaryList.appendChild(listItem);
+            }
+        }
+    }
+
+    // Event listeners
+    document.getElementById('add-payment-btn').addEventListener('click', addPaymentInput);
+    document.getElementById('save-btn').addEventListener('click', savePayments);
+</script>
+
+</body>
+</html>
